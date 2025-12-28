@@ -1,31 +1,43 @@
 import React from 'react';
-import { Bug, Menu, X } from 'lucide-react';
+import { Bug, Menu, X, PawPrint } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const isAnimalPage = location.pathname === '/animal-identifier';
 
-  const navLinks = [
+  const insectNavLinks = [
     { href: '#identifier', label: 'Identify Insect' },
     { href: '#how-it-works', label: 'How It Works' },
     { href: '#common-insects', label: 'Common Insects' },
     { href: '#about', label: 'About' },
   ];
 
+  const animalNavLinks = [
+    { href: '#animal-identifier', label: 'Identify Animal' },
+    { href: '#how-animal-works', label: 'How It Works' },
+    { href: '#common-animals', label: 'Common Animals' },
+    { href: '#about-animal', label: 'About' },
+  ];
+
+  const navLinks = isAnimalPage ? animalNavLinks : insectNavLinks;
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass">
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2 group">
-            <div className="p-2 rounded-lg bg-primary/20 group-hover:bg-primary/30 transition-colors">
-              <Bug className="w-6 h-6 text-primary" />
+          <Link to={isAnimalPage ? '/animal-identifier' : '/'} className="flex items-center gap-2 group">
+            <div className={`p-2 rounded-lg ${isAnimalPage ? 'bg-accent/20 group-hover:bg-accent/30' : 'bg-primary/20 group-hover:bg-primary/30'} transition-colors`}>
+              {isAnimalPage ? <PawPrint className="w-6 h-6 text-accent" /> : <Bug className="w-6 h-6 text-primary" />}
             </div>
             <span className="text-xl font-serif font-bold text-foreground">
-              Insect<span className="text-primary">ID</span>
+              {isAnimalPage ? <>Animal<span className="text-accent">ID</span></> : <>Insect<span className="text-primary">ID</span></>}
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
@@ -40,10 +52,17 @@ const Header: React.FC = () => {
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
+          {/* Tools Dropdown + CTA */}
+          <div className="hidden md:flex items-center gap-4">
+            <Link 
+              to={isAnimalPage ? '/' : '/animal-identifier'} 
+              className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium"
+            >
+              {isAnimalPage ? <Bug className="w-4 h-4" /> : <PawPrint className="w-4 h-4" />}
+              {isAnimalPage ? 'Insect ID' : 'Animal ID'}
+            </Link>
             <Button variant="hero" size="default" asChild>
-              <a href="#identifier">Try Now</a>
+              <a href={isAnimalPage ? '#animal-identifier' : '#identifier'}>Try Now</a>
             </Button>
           </div>
 
@@ -71,8 +90,16 @@ const Header: React.FC = () => {
                   {link.label}
                 </a>
               ))}
+              <Link 
+                to={isAnimalPage ? '/' : '/animal-identifier'} 
+                className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {isAnimalPage ? <Bug className="w-4 h-4" /> : <PawPrint className="w-4 h-4" />}
+                {isAnimalPage ? 'Switch to Insect ID' : 'Switch to Animal ID'}
+              </Link>
               <Button variant="hero" size="default" asChild className="mt-2">
-                <a href="#identifier" onClick={() => setIsMenuOpen(false)}>
+                <a href={isAnimalPage ? '#animal-identifier' : '#identifier'} onClick={() => setIsMenuOpen(false)}>
                   Try Now
                 </a>
               </Button>
