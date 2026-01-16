@@ -1,14 +1,38 @@
+# InsectID - AI-Powered Species Recognition
+# https://insectid.app
+
+# Allow all search engines
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/
+
+# Googlebot specific
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 1
 
+# Bingbot specific
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 2
 
+# Social media crawlers
 User-agent: Twitterbot
 Allow: /
 
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
+User-agent: LinkedInBot
 Allow: /
+
+User-agent: Pinterest
+Allow: /
+
+# Sitemap location
+Sitemap: https://insectid.app/sitemap.xml
+
+# Host
+Host: https://insectid.app
