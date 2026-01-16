@@ -44,14 +44,14 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Resources */}
+          {/* Identification Tools */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Resources</h4>
+            <h4 className="font-semibold text-foreground mb-4">Identification Tools</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Insect Encyclopedia</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Conservation Guide</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Photography Tips</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">API Documentation</a></li>
+              <li><a href="/" className="text-muted-foreground hover:text-primary transition-colors">Insect Identifier</a></li>
+              <li><a href="/animal-identifier" className="text-muted-foreground hover:text-primary transition-colors">Animal Identifier</a></li>
+              <li><a href="#common-insects" className="text-muted-foreground hover:text-primary transition-colors">Insect Encyclopedia</a></li>
+              <li><a href="#about" className="text-muted-foreground hover:text-primary transition-colors">Conservation Guide</a></li>
             </ul>
           </div>
         </div>
